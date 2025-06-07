@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenMicPhilly Hub - Where West Philly Performs</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+     
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #f5f5f5;
+            background: #2C2C2C;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(45, 44, 44, 0.95);
+            z-index: 50;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #D4A017;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: #D4A017;
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #5D1621 0%, #2C2C2C 100%);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #D4A017;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #D4A017;
+            color: #2C2C2C;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .cta-button:hover {
+            background: #FF6B35;
+        }
+        
+        .next-mic {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #D4A017;
+        }
+        
+        .mic-card {
+            background: linear-gradient(135deg, #5D1621, #2C2C2C);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .mic-date {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            color: #D4A017;
+            margin-bottom: 0.5rem;
+        }
+        
+        .mic-venue {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .mic-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .detail-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        
+        .detail-icon {
+            font-size: 1.5rem;
+            color: #D4A017;
+            margin-bottom: 0.5rem;
+        }
+        
+        .calendar-section {
+            padding: 5rem 2rem;
+            background: #1a1a1a;
+        }
+        
+        .calendar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .calendar-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            background: #5D1621;
+            color: #f5f5f5;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #D4A017;
+            color: #2C2C2C;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .event-card {
+            background: linear-gradient(135deg, #2C2C2C, #5D1621);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(212, 160, 23, 0.2);
+        }
+        
+        .event-date {
+            color: #D4A017;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .event-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+        }
+        
+        .event-location {
+            margin-bottom: 1rem;
+        }
+        
+        .event-genres {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .genre-tag {
+            background: rgba(212, 160, 23, 0.2);
+            color: #D4A017;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .signup-btn {
+            background: #D4A017;
+            color: #2C2C2C;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+        }
+        
+        .signup-btn:hover {
+            background: #FF6B35;
+        }
+        
+        .collaborate-section {
+            padding: 5rem 2rem;
+            background: #2C2C2C;
+        }
+        
+        .collab-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .collab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .collab-card {
+            background: linear-gradient(135deg, #5D1621, #1a1a1a);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+        
+        .collab-type {
+            background: #D4A017;
+            color: #2C2C2C;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .collab-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .collab-description {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-btn {
+            background: transparent;
+            color: #D4A017;
+            border: 2px solid #D4A017;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .contact-btn:hover {
+            background: #D4A017;
+            color: #2C2C2C;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #f5f5f5;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: #D4A017;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            color: #f5f5f5;
+            font-size: 1.5rem;
+        }
+        
+        .social-links a:hover {
+            color: #D4A017;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background: #1a1a1a;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            border: 1px solid #D4A017;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-header h3 {
+            color: #D4A017;
+            font-family: 'Oswald', sans-serif;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: #f5f5f5;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .close-btn:hover {
+            color: #D4A017;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #D4A017;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #D4A017;
+            border-radius: 8px;
+            background: #2C2C2C;
+            color: #f5f5f5;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1rem;
+        }
+        
+        .btn-primary {
+            background: #D4A017;
+            color: #2C2C2C;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #f5f5f5;
+            border: 1px solid #f5f5f5;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mic-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">OpenMic<span style="color: #FF6B35;">Philly</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#calendar">Calendar</a></li>
+                <li><a href="#collaborate">Collaborate</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Where West Philly Performs</h1>
+            <p>Your central hub for open-mic nights, collaborations, and creative connections across West Philadelphia's vibrant arts scene.</p>
+            <a href="#next-mic" class="cta-button">Find Your Stage Tonight</a>
+        </div>
+    </section>
+
+    <section id="next-mic" class="next-mic">
+        <h2 class="section-title">Next Mic Spotlight</h2>
+        <div class="mic-card">
+            <div class="mic-date">Tonight • 7:00 PM</div>
+            <div class="mic-venue">The Legendary Dobbs</div>
+            <div class="mic-details">
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-microphone"></i></div>
+                    <div>Open Mic Night</div>
+                    <small>All genres welcome</small>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-users"></i></div>
+                    <div>12 spots left</div>
+                    <small>5-minute sets</small>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div>Free entry</div>
+                    <small>Tips appreciated</small>
+                </div>
+            </div>
+            <a href="#signup" class="cta-button">Reserve Your Spot</a>
+        </div>
+    </section>
+
+    <section id="calendar" class="calendar-section">
+        <div class="calendar-container">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="calendar-filters">
+                <button class="filter-btn active" onclick="filterEvents('all')">All Events</button>
+                <button class="filter-btn" onclick="filterEvents('music')">Music</button>
+                <button class="filter-btn" onclick="filterEvents('poetry')">Poetry</button>
+                <button class="filter-btn" onclick="filterEvents('comedy')">Comedy</button>
+                <button class="filter-btn" onclick="filterEvents('variety')">Variety</button>
+            </div>
+            <div class="calendar-grid" id="events-grid">
+            
+            </div>
+        </div>
+    </section>
+
+    <section id="collaborate" class="collaborate-section">
+        <div class="collab-container">
+            <h2 class="section-title">Collaborate & Connect</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">Find your creative partners and build something amazing together</p>
+            <div class="collab-grid">
+                <div class="collab-card">
+                    <div class="collab-type">Seeking Musicians</div>
+                    <h3 class="collab-title">Acoustic Duo Formation</h3>
+                    <p class="collab-description">Singer-songwriter looking for a guitarist/harmonist for regular gigs around West Philly. Influences: Bon Iver, Fleet Foxes, Iron & Wine.</p>
+                    <button class="contact-btn" onclick="showContactModal('Acoustic Duo Formation')">Connect</button>
+                </div>
+                <div class="collab-card">
+                    <div class="collab-type">Poetry Collective</div>
+                    <h3 class="collab-title">Spoken Word Workshop</h3>
+                    <p class="collab-description">Monthly poetry workshop and group performances. All skill levels welcome. Focus on social justice themes and community stories.</p>
+                    <button class="contact-btn" onclick="showContactModal('Spoken Word Workshop')">Join Group</button>
+                </div>
+                <div class="collab-card">
+                    <div class="collab-type">Comedy Collective</div>
+                    <h3 class="collab-title">New Material Testing</h3>
+                    <p class="collab-description">Stand-up comedians meeting weekly to workshop new material and provide feedback. Looking for dedicated performers.</p>
+                    <button class="contact-btn" onclick="showContactModal('New Material Testing')">Get Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="footer-content">
+            <h2 class="section-title">About OpenMicPhilly Hub</h2>
+            <p>OpenMicPhilly Hub is your go-to resource for discovering and participating in the vibrant open mic scene across West Philadelphia. Whether you're a performer, a venue owner, or just a fan of the arts, we connect you to the best local events and opportunities.</p>
+            <p>Join us in celebrating creativity, collaboration, and community!</p>
+        </div>
+        <br>
+          <div class="about-section">
+            <div class="footer-links">
+                <a href="#mission">Mission</a>
+                <a href="#venues">Partner Venues</a>
+                <a href="#contact">Contact</a>
+                <a href="#faq">FAQ</a>
+                <a href="#accessibility">Accessibility</a>
+            </div>
+    </section>
+
+    <footer id="footer">
+        <div class="footer-content">
+            <h3 class="section-title">Quick Links</h3>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#calendar">Calendar</a>
+                <a href="#collaborate">Collaborate</a>
+                <a href="#about">About</a>
+            </div>
+      
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2025 OpenMicPhilly Hub. Built for the community, by the community.</p>
+            <p><small>INFO 552 - Web Design for Community Website Project | Marian Gasinu</small></p>
+        </div>
+    </footer>
+
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Sign Up for Event</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="performance">Performance Type *</label>
+                    <select id="performance" required>
+                        <option value="">Select type...</option>
+                        <option value="music">Music</option>
+                        <option value="poetry">Poetry/Spoken Word</option>
+                        <option value="comedy">Comedy</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description">Brief Description</label>
+                    <textarea id="description" placeholder="Tell us about your performance (optional)"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Sign Me Up!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="contactTitle">Connect for Collaboration</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="contactName">Your Name *</label>
+                    <input type="text" id="contactName" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Your Email *</label>
+                    <input type="email" id="contactEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" required placeholder="Tell them why you're interested in collaborating..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+  
+        var events = [
+            {
+                id: 1,
+                title: "Open Mic Night",
+                date: "May 23, 2025",
+                time: "7:00 PM",
+                venue: "The Legendary Dobbs",
+                genres: ["music", "poetry", "comedy"],
+                spotsLeft: 8,
+                description: "Weekly open mic featuring all genres"
+            },
+            {
+                id: 2,
+                title: "Poetry Slam",
+                date: "May 24, 2025",
+                time: "8:00 PM",
+                venue: "Fiume",
+                genres: ["poetry"],
+                spotsLeft: 12,
+                description: "Competitive poetry slam with prizes"
+            },
+            {
+                id: 3,
+                title: "Comedy Night",
+                date: "May 25, 2025",
+                time: "9:00 PM",
+                venue: "Good Good Comedy Theatre",
+                genres: ["comedy"],
+                spotsLeft: 6,
+                description: "Stand-up comedy showcase"
+            },
+            {
+                id: 4,
+                title: "Acoustic Sessions",
+                date: "May 26, 2025",
+                time: "6:30 PM",
+                venue: "Café Luna",
+                genres: ["music"],
+                spotsLeft: 10,
+                description: "Intimate acoustic performances"
+            },
+            {
+                id: 5,
+                title: "Variety Show",
+                date: "May 27, 2025",
+                time: "7:30 PM",
+                venue: "World Café Live",
+                genres: ["variety", "music", "comedy"],
+                spotsLeft: 15,
+                description: "Mixed genre variety show"
+            },
+            {
+                id: 6,
+                title: "Jazz & Poetry",
+                date: "May 28, 2025",
+                time: "8:30 PM",
+                venue: "Time Restaurant",
+                genres: ["music", "poetry"],
+                spotsLeft: 7,
+                description: "Jazz musicians and spoken word artists"
+            }
+        ];
+
+        var activeFilter = 'all';
+
+        function renderEvents(eventsToRender) {
+            var eventsGrid = document.getElementById('events-grid');
+            eventsGrid.innerHTML = '';
+
+            for (var i = 0; i < eventsToRender.length; i++) {
+                var event = eventsToRender[i];
+                var eventCard = document.createElement('div');
+                eventCard.className = 'event-card';
+                
+                var genreTags = '';
+                for (var j = 0; j < event.genres.length; j++) {
+                    genreTags += '<span class="genre-tag">' + event.genres[j] + '</span>';
+                }
+                
+                eventCard.innerHTML = 
+                    '<div class="event-date">' + event.date + ' • ' + event.time + '</div>' +
+                    '<h3 class="event-title">' + event.title + '</h3>' +
+                    '<div class="event-location"><i class="fas fa-map-marker-alt"></i> ' + event.venue + '</div>' +
+                    '<div class="event-genres">' + genreTags + '</div>' +
+                    '<p style="margin-bottom: 1rem;">' + event.description + '</p>' +
+                    '<div style="margin-bottom: 1rem; color: #D4A017; font-weight: 500;">' +
+                    '<i class="fas fa-users"></i> ' + event.spotsLeft + ' spots available</div>' +
+                    '<button class="signup-btn" onclick="showSignupModal(' + event.id + ')">Sign Me Up!</button>';
+                
+                eventsGrid.appendChild(eventCard);
+            }
+        }
+
+        function filterEvents(category) {
+            activeFilter = category;
+            
+            var buttons = document.querySelectorAll('.filter-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+            event.target.classList.add('active');
+  
+            if (category === 'all') {
+                renderEvents(events);
+            } else {
+                var filteredEvents = [];
+                for (var i = 0; i < events.length; i++) {
+                    if (events[i].genres.indexOf(category) !== -1) {
+                        filteredEvents.push(events[i]);
+                    }
+                }
+                renderEvents(filteredEvents);
+            }
+        }
+
+        function showSignupModal(eventId) {
+            var event = null;
+            for (var i = 0; i < events.length; i++) {
+                if (events[i].id === eventId) {
+                    event = events[i];
+                    break;
+                }
+            }
+            
+            if (event && event.spotsLeft > 0) {
+                document.getElementById('signupModal').style.display = 'block';
+            } else {
+                alert('Sorry, this event is full or no longer available.');
+            }
+        }
+
+        function showContactModal(title) {
+            document.getElementById('contactTitle').textContent = 'Connect for: ' + title;
+            document.getElementById('contactModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('signupModal').style.display = 'none';
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        window.addEventListener('click', function(e) {
+            var signupModal = document.getElementById('signupModal');
+            var contactModal = document.getElementById('contactModal');
+            if (e.target === signupModal) {
+                signupModal.style.display = 'none';
+            }
+            if (e.target === contactModal) {
+                contactModal.style.display = 'none';
+            }
+        });
+
+        var navLinks = document.querySelectorAll('a[href^="#"]');
+        for (var i = 0; i < navLinks.length; i++) {
+            navLinks[i].addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('load', function() {
+            renderEvents(events);
+        });
+    </script>
+</body>
+</html>
