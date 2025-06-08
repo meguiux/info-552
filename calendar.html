@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar - OpenMicPhilly Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #f5f5f5;
+            background: #2C2C2C;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(45, 44, 44, 0.95);
+            z-index: 50;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #D4A017;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #D4A017;
+        }
+    .calendar-header {
+      text-align: center;
+      margin: 2rem 0 1rem;
+    }
+    .calendar-nav {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .calendar-nav button {
+      background: transparent;
+      border: 1px solid #D4A017;
+      color: #D4A017;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .calendar-nav button:hover {
+      background: #D4A017;
+      color: #2C2C2C;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .day {
+      padding: 1rem;
+      background: #1a1a1a;
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .day:hover {
+      background-color: #3a3a3a;
+      transform: scale(1.05);
+    }
+    .day.event {
+      background: #D4A017;
+      color: #2C2C2C;
+      font-weight: bold;
+    }
+    .day.event:hover {
+      background-color: #FF6B35;
+      color: white;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+    }
+    .modal-content h2 {
+      color: #D4A017;
+      margin-bottom: 1rem;
+    }
+    .modal-content button {
+      margin: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .register-btn {
+      background: #D4A017;
+      color: #2C2C2C;
+    }
+    .register-btn:hover {
+      background: #FF6B35;
+      transform: scale(1.05);
+    }
+    .details-btn {
+      background: transparent;
+      color: #D4A017;
+      border: 1px solid #D4A017;
+    }
+    .details-btn:hover {
+      background: #D4A017;
+      color: #2C2C2C;
+      transform: scale(1.05);
+    }
+  </style>
+
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">OpenMic<span style="color: #FF6B35;">Philly</span></a>
+               <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="collaborate.html">Collaborate</a></li>
+                <li><a href="#about.html">About</a></li>
+                <li><a href="#contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div style="margin-top: 90px;">
+        <h1 class="page-heading" style="text-align:center; margin-bottom: 1.5rem;">June 2025 Events Calendar</h1>
+        <div class="calendar-header">
+            <h2>June 2025</h2>
+        </div>
+        <div class="calendar-nav">
+            <button onclick="alert('Past months: May calendar')">&#8592; May</button>
+            <button onclick="alert('Coming soon: July calendar')">July &#8594;</button>
+        </div>
+        <section>
+            <div class="calendar">
+                <div class="day">1</div>
+                <div class="day">2</div>
+                <div class="day">3</div>
+                <div class="day">4</div>
+                <div class="day event" onclick="showModal('Open Mic @ The Rotunda, 7PM')">5</div>
+                <div class="day">6</div>
+                <div class="day">7</div>
+                <div class="day">8</div>
+                <div class="day">9</div>
+                <div class="day event" onclick="showModal('Spoken Word @ Dock Street Brewery, 8PM')">10</div>
+                <div class="day">11</div>
+                <div class="day">12</div>
+                <div class="day">13</div>
+                <div class="day">14</div>
+                <div class="day event" onclick="showModal('Jazz & Jokes @ The Fire, 9PM')">15</div>
+                <div class="day">16</div>
+                <div class="day">17</div>
+                <div class="day">18</div>
+                <div class="day">19</div>
+                <div class="day event" onclick="showModal('Acoustic Night @ World Cafe Live, 7PM')">20</div>
+                <div class="day">21</div>
+                <div class="day">22</div>
+                <div class="day">23</div>
+                <div class="day">24</div>
+                <div class="day">25</div>
+                <div class="day">26</div>
+                <div class="day">27</div>
+                <div class="day">28</div>
+                <div class="day">29</div>
+                <div class="day">30</div>
+            </div>
+        </section>
+        <div id="eventModal" class="modal" onclick="hideModal()">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <h2 id="eventTitle">Event Details</h2>
+                <button class="register-btn">Register</button>
+                <button class="details-btn">View Details</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showModal(title) {
+            document.getElementById('eventTitle').textContent = title;
+            document.getElementById('eventModal').style.display = 'flex';
+        }
+
+        function hideModal() {
+            document.getElementById('eventModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
