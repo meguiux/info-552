@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborate - OpenMicPhilly Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #f5f5f5;
+            background: #2C2C2C;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(45, 44, 44, 0.95);
+            z-index: 50;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #D4A017;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #D4A017;
+        }
+        header {
+            text-align: center;
+            margin-top: 80px; /* Prevent nav from overlapping content */
+            padding: 2rem 0;
+        }
+    .Collaborate-section {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 1rem;
+        line-height: 1.5;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .card {
+        background: #1a1a1a;
+        padding: 1rem;
+        border-radius: 10px;
+        border-left: 4px solid #D4A017;
+    }
+    .tag {
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: #D4A017;
+        margin-bottom: 0.3rem;
+    }
+    .title {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+    }
+    .desc {
+        font-size: 0.9rem;
+    }
+    .center {
+        text-align: center;
+        margin-bottom: 1.2rem;
+    }
+    .btn {
+        background: #D4A017;
+        color: #2C2C2C;
+        padding: 0.6rem 1.2rem;
+        border: none;
+        border-radius: 22px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .btn:hover {
+        background: #FF6B35;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.85);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    .modal-content {
+        background: #1a1a1a;
+        padding: 1.2rem;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+    }
+    .modal-content h2 {
+        color: #D4A017;
+        margin-bottom: 0.7rem;
+    }
+    .form-group {
+        margin-bottom: 0.7rem;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 0.3rem;
+        color: #D4A017;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        padding: 0.4rem;
+        background: #2C2C2C;
+        color: #fff;
+        border: 1px solid #D4A017;
+        border-radius: 7px;
+    }
+    .form-actions {
+        text-align: right;
+        margin-top: 0.7rem;
+    }
+    .close {
+        float: right;
+        font-size: 1.3rem;
+        color: #f5f5f5;
+        cursor: pointer;
+    }
+    .close:hover {
+        color: #D4A017;
+    }
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 0.7rem;
+        margin-top: 1.2rem;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .gallery img {
+        width: 100%;
+        border-radius: 8px;
+        object-fit: cover;
+        height: 160px;
+        transition: transform 0.3s;
+    }
+    .gallery img:hover {
+        transform: scale(1.05);
+    }
+</style>
+</head>
+<body>
+ 
+  <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">OpenMic<span style="color: #FF6B35;">Philly</span></a>
+          <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="collaborate.html">Collaborate</a></li>
+                <li><a href="#about.html">About</a></li>
+                <li><a href="#contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+<div class="center">
+    <button class="btn" onclick="document.getElementById('collabModal').style.display='flex'">Post a Collab</button>
+</div>
+<header>
+    <h1>Collaborate & Connect</h1>
+</header>
+   <section class="Collaborate-section">
+    <p><strong>OpenMicPhilly Hub</strong> is your digital link to the powerful, pulsing creative community of West Philadelphia. Born from a passion for performance and connection, our goal is to make open mics more accessible, welcoming, and collaborative for all — from poets and singers to beatmakers and storytellers.</p>
+
+    <p>We’re more than just a calendar. We’re a space to build, collaborate, and grow — whether you're looking for your next duo partner, a stage to test new work, or just to be inspired. The Hub amplifies voices often overlooked and provides tools to build bridges in the local scene.</p>
+
+    <p>Below are glimpses from recent link-ups, jams, and open mic nights hosted across West Philly. Let’s keep the rhythm alive.</p>
+  </section>
+<br>
+  <section class="grid">
+    <div class="card">
+      <div class="tag">#duo-partners</div>
+      <div class="title">Looking for Acoustic Vocalist</div>
+      <div class="desc">Need a vocalist for local West Philly gigs. Folk/indie vibe preferred.</div>
+    </div>
+    <div class="card">
+      <div class="tag">#spokenword</div>
+      <div class="title">Co-host for Monthly Mic</div>
+      <div class="desc">Poet needed to help run monthly open-mic. Email to join!</div>
+    </div>
+    <div class="card">
+      <div class="tag">#beatboxers</div>
+      <div class="title">Freestyle Fusion Collab</div>
+      <div class="desc">Seeking beatboxer or looper for live jam collabs at The Fire.</div>
+    </div>
+  </section>
+<br>
+  <section class="gallery">
+    <img src="images/img1.jpg" alt="Open mic performance at The Rotunda">
+    <img src="images/collab.jpg.webp" alt="Group jam session in Cedar Park">
+    <img src="images/collab.jpeg" alt="Duo performance at Dock Street Brewery">
+    <img src="images/img7.jpeg" alt="Spoken word night crowd cheering">
+  </section>
+
+  <div class="modal" id="collabModal" onclick="hideModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close" onclick="hideModal(event)">&times;</span>
+      <h2>Post a Collaboration</h2>
+      <form>
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="collabType">Collab Type</label>
+          <select id="collabType" required>
+            <option value="">Select type</option>
+            <option value="duo">Duo Partner</option>
+            <option value="host">Co-Host</option>
+            <option value="jam">Jam Session</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="details">Project Details</label>
+          <textarea id="details" placeholder="Describe your collab idea..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="contact">Contact Info</label>
+          <input type="text" id="contact" placeholder="email or IG handle" required>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function hideModal(e) {
+      document.getElementById('collabModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
