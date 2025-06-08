@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - OpenMicPhilly Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #f5f5f5;
+            background: #2C2C2C;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(45, 44, 44, 0.95);
+            z-index: 50;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #D4A017;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #D4A017;
+        }
+        .page-heading {
+            margin-top: 90px;
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            color: #D4A017;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        .about-section {
+            max-width: 800px;
+            margin: 2rem auto 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .gallery img {
+            width: 220px;
+            border-radius: 10px;
+            object-fit: cover;
+            height: 200px;
+            transition: transform 0.3s;
+            display: block;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">OpenMic<span style="color: #FF6B35;">Philly</span></a>
+             <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="collaborate.html">Collaborate</a></li>
+                <li><a href="#about.html">About</a></li>
+                <li><a href="#contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1 class="page-heading">About the Hub</h1>
+
+    <section class="about-section">
+        <p><strong>OpenMicPhilly Hub</strong> is your digital link to the powerful, pulsing creative community of West Philadelphia. Born from a passion for performance and connection, our goal is to make open mics more accessible, welcoming, and collaborative for all — from poets and singers to beatmakers and storytellers.</p>
+
+        <p>We’re more than just a calendar. We’re a space to build, collaborate, and grow — whether you're looking for your next duo partner, a stage to test new work, or just to be inspired. The Hub amplifies voices often overlooked and provides tools to build bridges in the local scene.</p>
+
+        <p>Below are glimpses from recent link-ups, jams, and open mic nights hosted across West Philly. Let’s keep the rhythm alive.</p>
+    </section>
+
+    <section class="gallery">
+        <img src="images/music.jpg" alt="Open mic performance at The Rotunda">
+        <img src="images/img5.jpg" alt="Group jam session in Cedar Park">
+    </section>
+</body>
+</html>
