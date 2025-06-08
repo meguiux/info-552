@@ -1,0 +1,900 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - OpenMicPhilly Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #f5f5f5;
+            background: #2C2C2C;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(45, 44, 44, 0.95);
+            z-index: 50;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #D4A017;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #D4A017;
+        }
+        
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #5D1621 0%, #2C2C2C 100%);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #D4A017;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #D4A017;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #f5f5f5;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-input::placeholder {
+            color: rgba(245, 245, 245, 0.7);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #D4A017;
+        }
+
+        .recent-events-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2C2C2C 100%);
+            border-bottom: 1px solid rgba(212, 160, 23, 0.2);
+        }
+
+        .recent-events-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .recent-events-section h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #D4A017;
+            margin-bottom: 1rem;
+        }
+
+        .recent-events-subtitle {
+            font-size: 1.1rem;
+            color: rgba(245, 245, 245, 0.8);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .recent-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .recent-image-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .recent-image-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 160, 23, 0.2);
+        }
+
+        .recent-gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .recent-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .recent-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 2rem 1.5rem 1.5rem;
+            color: #f5f5f5;
+        }
+
+        .recent-image-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #D4A017;
+        }
+
+        .recent-image-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .events-section {
+            padding: 3rem 2rem;
+            min-height: 60vh;
+        }
+        
+        .events-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .events-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .events-count {
+            color: #D4A017;
+            font-weight: 500;
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .event-card {
+            background: linear-gradient(135deg, #2C2C2C, #5D1621);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(212, 160, 23, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #D4A017, #FF6B35);
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 160, 23, 0.2);
+        }
+        
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .event-date {
+            color: #D4A017;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .event-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-available {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+        
+        .status-filling {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+        
+        .status-full {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+        }
+        
+        .event-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            margin: 0.5rem 0;
+            color: #f5f5f5;
+        }
+        
+        .event-venue {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: rgba(245, 245, 245, 0.8);
+        }
+        
+        .event-genres {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .genre-tag {
+            background: rgba(212, 160, 23, 0.2);
+            color: #D4A017;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .event-description {
+            margin-bottom: 1rem;
+            color: rgba(245, 245, 245, 0.9);
+            line-height: 1.5;
+        }
+        
+        .event-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .spots-info {
+            color: #D4A017;
+            font-weight: 500;
+        }
+        
+        .event-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .signup-btn {
+            background: #D4A017;
+            color: #2C2C2C;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            flex: 1;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .signup-btn:hover {
+            background: #FF6B35;
+            transform: translateY(-2px);
+        }
+        
+        .signup-btn.disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .info-btn {
+            background: transparent;
+            color: #D4A017;
+            border: 2px solid #D4A017;
+            padding: 0.75rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .info-btn:hover {
+            background: #D4A017;
+            color: #2C2C2C;
+        }
+        
+        .load-more {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .load-more-btn {
+            background: transparent;
+            color: #D4A017;
+            border: 2px solid #D4A017;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .load-more-btn:hover {
+            background: #D4A017;
+            color: #2C2C2C;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #2C2C2C, #5D1621);
+            margin: 2rem;
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            border: 1px solid rgba(212, 160, 23, 0.3);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(212, 160, 23, 0.2);
+        }
+
+        .modal-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: #D4A017;
+            margin: 0;
+        }
+
+        .close {
+            color: #f5f5f5;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #D4A017;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #D4A017;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid rgba(212, 160, 23, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #f5f5f5;
+            font-family: 'Roboto', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #D4A017;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(245, 245, 245, 0.5);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-primary {
+            background: #D4A017;
+            color: #2C2C2C;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            flex: 1;
+            transition: all 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background: #FF6B35;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #D4A017;
+            border: 2px solid #D4A017;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .btn-secondary:hover {
+            background: #D4A017;
+            color: #2C2C2C;
+        }
+
+        .success-message {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .event-info {
+            background: rgba(212, 160, 23, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #D4A017;
+        }
+
+        .event-info h4 {
+            color: #D4A017;
+            margin-bottom: 0.5rem;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .event-info p {
+            margin: 0;
+            color: rgba(245, 245, 245, 0.8);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .events-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .recent-events-section h2 {
+                font-size: 2rem;
+            }
+
+            .recent-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">OpenMic<span style="color: #FF6B35;">Philly</span></a>
+              <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="collaborate.html">Collaborate</a></li>
+                <li><a href="#about.html">About</a></li>
+                <li><a href="#contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Discover Your Stage</h1>
+        <p>Find the perfect open mic event to showcase your talent across West Philadelphia's vibrant arts scene</p>
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search events, venues, or genres...">
+        </div>
+    </section>
+
+    <section class="recent-events-section">
+        <div class="recent-events-container">
+            <h2>Recent Highlights</h2>
+            <p class="recent-events-subtitle">
+                Take a look at some amazing moments from our recent open mic events across Philadelphia's vibrant arts community
+            </p>
+            <div class="recent-gallery">
+                <div class="recent-image-container">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=250&fit=crop" alt="Open Mic Night at The Legendary Dobbs">
+                    <div class="recent-image-overlay">
+                        <div class="recent-image-title">Open Mic Night Success</div>
+                        <div class="recent-image-description">
+                            Amazing turnout at The Legendary Dobbs with 20+ performers showcasing their talent
+                        </div>
+                    </div>
+                </div>
+                <div class="recent-image-container">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop" alt="Poetry Slam Championship">
+                    <div class="recent-image-overlay">
+                        <div class="recent-image-title">Poetry Slam Victory</div>
+                        <div class="recent-image-description">
+                            Fierce competition and powerful words at our monthly poetry championship event
+                        </div>
+                    </div>
+                </div>
+                <div class="recent-image-container">
+                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=250&fit=crop" alt="Comedy Showcase">
+                    <div class="recent-image-overlay">
+                        <div class="recent-image-title">Comedy Gold</div>
+                        <div class="recent-image-description">
+                            Laughs filled the room during our weekly comedy showcase at Good Good Theatre
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="events-section">
+        <div class="events-container">
+            <div class="events-header">
+                <div class="events-count">Showing 6 events</div>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card" data-event-id="1" data-event-title="Open Mic Night" data-event-date="June 8, 2025 • 7:00 PM" data-event-venue="The Legendary Dobbs" data-event-price="Free">
+                    <div class="event-header">
+                        <div class="event-date">June 8, 2025 • 7:00 PM</div>
+                        <div class="event-status status-available">AVAILABLE</div>
+                    </div>
+                    <h3 class="event-title">Open Mic Night</h3>
+                    <div class="event-venue">
+                        <i class="fas fa-map-marker-alt"></i> The Legendary Dobbs
+                    </div>
+                    <div class="event-genres">
+                        <span class="genre-tag">music</span>
+                        <span class="genre-tag">poetry</span>
+                        <span class="genre-tag">comedy</span>
+                    </div>
+                    <p class="event-description">Weekly open mic featuring all genres. Come share your talent with our supportive community!</p>
+                    <div class="event-details">
+                        <span class="spots-info">8 of 15 spots left</span>
+                        <span class="event-price">Free</span>
+                    </div>
+                    <div class="event-actions">
+                        <button class="signup-btn" onclick="openSignupModal(this)">Sign Me Up!</button>
+                        <button class="info-btn"><i class="fas fa-info"></i></button>
+                    </div>
+                </div>
+
+                <div class="event-card" data-event-id="2" data-event-title="Poetry Slam Championship" data-event-date="June 9, 2025 • 8:00 PM" data-event-venue="Fiume" data-event-price="$5 entry">
+                    <div class="event-header">
+                        <div class="event-date">June 9, 2025 • 8:00 PM</div>
+                        <div class="event-status status-available">AVAILABLE</div>
+                    </div>
+                    <h3 class="event-title">Poetry Slam Championship</h3>
+                    <div class="event-venue">
+                        <i class="fas fa-map-marker-alt"></i> Fiume
+                    </div>
+                    <div class="event-genres">
+                        <span class="genre-tag">poetry</span>
+                    </div>
+                    <p class="event-description">Competitive poetry slam with cash prizes. Bring your best original work!</p>
+                    <div class="event-details">
+                        <span class="spots-info">12 of 20 spots left</span>
+                        <span class="event-price">$5 entry</span>
+                    </div>
+                    <div class="event-actions">
+                        <button class="signup-btn" onclick="openSignupModal(this)">Sign Me Up!</button>
+                        <button class="info-btn"><i class="fas fa-info"></i></button>
+                    </div>
+                </div>
+
+                <div class="event-card" data-event-id="3" data-event-title="Comedy Showcase" data-event-date="June 10, 2025 • 9:00 PM" data-event-venue="Good Good Comedy Theatre" data-event-price="$8 cover">
+                    <div class="event-header">
+                        <div class="event-date">June 10, 2025 • 9:00 PM</div>
+                        <div class="event-status status-full">FULL</div>
+                    </div>
+                    <h3 class="event-title">Comedy Showcase</h3>
+                    <div class="event-venue">
+                        <i class="fas fa-map-marker-alt"></i> Good Good Comedy Theatre
+                    </div>
+                    <div class="event-genres">
+                        <span class="genre-tag">comedy</span>
+                    </div>
+                    <p class="event-description">Stand-up comedy showcase featuring local comedians. 5-minute sets.</p>
+                    <div class="event-details">
+                        <span class="spots-info">0 of 12 spots left</span>
+                        <span class="event-price">$8 cover</span>
+                    </div>
+                    <div class="event-actions">
+                        <button class="signup-btn disabled" onclick="openWaitlistModal(this)">Join Waitlist</button>
+                        <button class="info-btn"><i class="fas fa-info"></i></button>
+                    </div>
+                </div>
+
+                <div class="event-card" data-event-id="4" data-event-title="Acoustic Sessions" data-event-date="June 11, 2025 • 6:30 PM" data-event-venue="Café Luna" data-event-price="Free with purchase">
+                    <div class="event-header">
+                        <div class="event-date">June 11, 2025 • 6:30 PM</div>
+                        <div class="event-status status-available">AVAILABLE</div>
+                    </div>
+                    <h3 class="event-title">Acoustic Sessions</h3>
+                    <div class="event-venue">
+                        <i class="fas fa-map-marker-alt"></i> Café Luna
+                    </div>
+                    <div class="event-genres">
+                        <span class="genre-tag">music</span>
+                    </div>
+                    <p class="event-description">Intimate acoustic performances in a cozy café setting. Perfect for singer-songwriters.</p>
+                    <div class="event-details">
+                        <span class="spots-info">10 of 12 spots left</span>
+                        <span class="event-price">Free with purchase</span>
+                    </div>
+                    <div class="event-actions">
+                        <button class="signup-btn" onclick="openSignupModal(this)">Sign Me Up!</button>
+                        <button class="info-btn"><i class="fas fa-info"></i></button>
+                    </div>
+                </div>
+
+                <div class="event-card" data-event-id="5" data-event-title="Variety Show Extravaganza" data-event-date="June 12, 2025 • 7:30 PM" data-event-venue="World Café Live" data-event-price="$10 cover">
+                    <div class="event-header">
+                        <div class="event-date">June 12, 2025 • 7:30 PM</div>
+                        <div class="event-status status-available">AVAILABLE</div>
+                    </div>
+                    <h3 class="event-title">Variety Show Extravaganza</h3>
+                    <div class="event-venue">
+                        <i class="fas fa-map-marker-alt"></i> World Café Live
+                    </div>
+                    <div class="event-genres">
+                        <span class="genre-tag">variety</span>
+                        <span class="genre-tag">music</span>
+                        <span class="genre-tag">comedy</span>
+                    </div>
+                    <p class="event-description">Mixed genre variety show featuring music, comedy, magic, and more!</p>
+                    <div class="event-details">
+                        <span class="spots-info">15 of 25 spots left</span>
+                        <span class="event-price">$10 cover</span>
+                    </div>
+                    <div class="event-actions">
+                        <button class="signup-btn" onclick="openSignupModal(this)">Sign Me Up!</button>
+                        <button class="info-btn"><i class="fas fa-info"></i></button>
+                    </div>
+                </div>
+
+<div class="event-card" data-event-id="6" data-event-title="Folk Music Circle" data-event-date="June 18, 2025 • 7:30 PM" data-event-venue="Fergie's Pub" data-event-price="Free with purchase">
+    <div class="event-header">
+        <div class="event-date">June 18, 2025 • 7:30 PM</div>
+        <div class="event-status status-filling">FILLING FAST</div>
+    </div>
+    <h3 class="event-title">Folk Music Circle</h3>
+    <div class="event-venue">
+        <i class="fas fa-map-marker-alt"></i> Fergie's Pub
+    </div>
+    <div class="event-genres">
+        <span class="genre-tag">music</span>
+    </div>
+    <p class="event-description">Traditional and contemporary folk music in an intimate pub setting.</p>
+    <div class="event-details">
+        <span class="spots-info">5 of 8 spots left</span>
+        <span class="event-price">Free with purchase</span>
+    </div>
+    <div class="event-actions">
+        <button class="signup-btn" onclick="openSignupModal(this)">Sign Me Up!</button>
+        <button class="info-btn"><i class="fas fa-info"></i></button>
+    </div>
+</div>
+</div> <!-- Close events-grid -->
+</div> <!-- Close events-container -->
+</section>
+
+<!-- Sign Up Modal -->
+<div id="signupModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Sign Up for an Event</h3>
+            <span class="close" onclick="closeSignupModal()">&times;</span>
+        </div>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="signupName">Your Name *</label>
+                <input type="text" id="signupName" name="signupName" placeholder="Enter your name" required />
+            </div>
+            <div class="form-group">
+                <label for="signupEmail">Email Address *</label>
+                <input type="email" id="signupEmail" name="signupEmail" placeholder="you@example.com" required />
+            </div>
+            <div class="form-group">
+                <label for="signupPerformance">Performance Type *</label>
+                <select id="signupPerformance" name="signupPerformance" required>
+                    <option value="">Select type...</option>
+                    <option value="music">Music</option>
+                    <option value="poetry">Poetry/Spoken Word</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="variety">Variety</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="signupNote">Brief Description</label>
+                <textarea id="signupNote" name="signupNote" placeholder="Tell us about your act (optional)"></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" onclick="closeSignupModal()">Cancel</button>
+                <button type="submit" class="btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openSignupModal(button) {
+        document.getElementById("signupModal").classList.add("show");
+    }
+
+    function closeSignupModal() {
+        document.getElementById("signupModal").classList.remove("show");
+    }
+
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        alert("Thank you for signing up! We will contact you soon.");
+        closeSignupModal();
+    });
+</script>
+</body>
+</html>
